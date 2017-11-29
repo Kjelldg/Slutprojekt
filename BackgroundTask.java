@@ -45,21 +45,22 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
             String password = params[2];
             String contact = params[3];
             String country = params[4];
-
-
-
             try
             {
                 Log.d(TAG, "Creating url, httpconnection");
-
-
 
                 URL url = new URL(reg_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
-                OutputStream os = httpURLConnection.getOutputStream();
+                OutputStream os =  httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+
+                /*
+                String dataInsert = "insert into users (name, password, contact, country) values ('test1', 'test2', 'test3', 'test4');" ;
+                bufferedWriter.write(dataInsert);
+                */
+
 
                 String data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"+
                         URLEncoder.encode("password", "UTF-8")+"="+URLEncoder.encode(password, "UTF-8")+"&"+

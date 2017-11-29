@@ -15,11 +15,11 @@ import android.widget.EditText;
 public class Register extends AppCompatActivity {
 
     EditText e_name, e_password, e_contact, e_country;
+    EditText e_showDataText;
+    String showDataText;
     String name, password, contact, country;
-
-
-
-
+    String testName, testPassword, testContact, testCountry;
+    String Str_Name, Str_Password, Str_Contact, Str_Country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,13 @@ public class Register extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-
-        e_name=(EditText) findViewById(R.id.name);
-        e_password=(EditText) findViewById(R.id.password);
-        e_contact =(EditText) findViewById(R.id.contact);
-        e_country =(EditText) findViewById(R.id.country);
+                /*
+                e_name=(EditText) findViewById(R.id.name);
+                e_password=(EditText) findViewById(R.id.password);
+                e_contact =(EditText) findViewById(R.id.contact);
+                e_country =(EditText) findViewById(R.id.country);
+                //e_showDataText =(EditText) findViewById(R.id.showDataText);
+                */
 
             }
         });
@@ -50,16 +52,44 @@ public class Register extends AppCompatActivity {
 
     public void reguser(View view) {
 
+        EditText edit_Name = (EditText) findViewById(R.id.name);
+        EditText edit_Password = (EditText) findViewById(R.id.password);
+        EditText edit_Contact = (EditText) findViewById(R.id.contact);
+        EditText edit_Country = (EditText) findViewById(R.id.country);
+
+        Str_Name = edit_Name.getText().toString();
+        Str_Password = edit_Password.getText().toString();
+        Str_Contact = edit_Contact.getText().toString();
+        Str_Country = edit_Country.getText().toString();
+
+        Log.i("Info", edit_Name.getText().toString());
+
+        /*
         name = e_name.getText().toString();
         password = e_password.getText().toString();
         contact = e_contact.getText().toString();
         country = e_country.getText().toString();
+        */
         String method = "register";
 
         BackgroundTask backgroundTask = new BackgroundTask(this);
-        //backgroundTask.execute(method, name, password, contact, country);
-        backgroundTask.doInBackground(method, name, password, contact, country);
-        finish();
+        backgroundTask.execute(method, Str_Name, Str_Password, Str_Contact, Str_Country);
+        //backgroundTask.doInBackground(method, name, password, contact, country);
+        // finish();
+    }
+
+    public void testReg(View view) {
+
+        testName = "TestName";
+        testPassword = "testPassword";
+        testContact = "testContact";
+        testCountry = "testCountry";
+        String method = "register";
+
+        BackgroundTask backgroundTask = new BackgroundTask(this);
+        backgroundTask.execute(method, testName, testPassword, testContact, testCountry);
+        //backgroundTask.doInBackground(method, testName, testPassword, testContact, testCountry);
+        // finish();
     }
 
     @Override
